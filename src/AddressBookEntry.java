@@ -11,6 +11,16 @@ public class AddressBookEntry {
    private String zipcode = "";
    private String phoneNumber = "";
    private String emailAddress = "";
+
+
+   private String altaddress = "";
+   private String altcity = "";
+   private String altstate = "";
+   private String altzipcode = "";
+   private String altamail = "";
+   private String homephone = "";
+   private String altphone = "";
+
    private int personID;
    private int addressID;
    private int phoneID;
@@ -88,10 +98,7 @@ public class AddressBookEntry {
    }
    
    // set state in which person lives
-   public void setState( String personState )
-   {
-      state = personState;
-   }
+   public void setState( String personState ) { state = personState; }
    
    // get state in which person lives
    public String getState()
@@ -176,7 +183,64 @@ public class AddressBookEntry {
    {
       return emailID;
    }
+
+   public String getAltaddress() {
+      return altaddress;
+   }
+
+   public void setAltaddress(String altaddress) {
+      this.altaddress = altaddress;
+   }
+
+   public String getAltcity() {
+      return altcity;
+   }
+
+   public void setAltcity(String altcity) {
+      this.altcity = altcity;
+   }
+
+   public String getAltstate() {
+      return altstate;
+   }
+
+   public void setAltstate(String altstate) {
+      this.altstate = altstate;
+   }
+
+   public String getAltzipcode() {
+      return altzipcode;
+   }
+
+   public void setAltzipcode(String altzipcode) {
+      this.altzipcode = altzipcode;
+   }
+
+   public String getAltamail() {
+      return altamail;
+   }
+
+   public void setAltamail(String altamail) {
+      this.altamail = altamail;
+   }
+
+   public String getHomephone() {
+      return homephone;
+   }
+
+   public void setHomephone(String homephone) {
+      this.homephone = homephone;
+   }
+
+   public String getAltphone() {
+      return altphone;
+   }
+
+   public void setAltphone(String altphone) {
+      this.altphone = altphone;
+   }
 }  // end class AddressBookEntry
+
 
 
 /**************************************************************************

@@ -30,8 +30,18 @@ public class AddressBookEntryFrame extends JInternalFrame {
    // HashMap fields.
    private static final String FIRST_NAME = "First Name", 
       LAST_NAME = "Last Name", ADDRESS1 = "Address 1", 
-      ADDRESS2 = "Address 2", CITY = "City", STATE = "State", 
-      ZIPCODE = "Zipcode", PHONE = "Phone", EMAIL = "Email";
+      ADDRESS2 = "Address 2", CITY = "City", STATE = "Eircode",
+      ZIPCODE = "County", PHONE = "Mobile Phone", EMAIL = "Email",
+    ALTADDR1 = "Alt Address"
+    ,ALTCITY = "Alt City"
+    ,ALTSTATE = "Alt Ericode"
+    ,ALTZIPCODE = "Alt county"
+    ,HOMEPHONE = "Home Phone"
+    ,ALTPHONE = "Alt Phone"
+   ,ALTEMAIL = "Alt Email"
+   ;
+
+
   
    // construct GUI
    public AddressBookEntryFrame()
@@ -41,20 +51,27 @@ public class AddressBookEntryFrame extends JInternalFrame {
       fields = new HashMap();  
 
       leftPanel = new JPanel();
-      leftPanel.setLayout( new GridLayout( 9, 1, 0, 5 ) );
+      leftPanel.setLayout( new GridLayout( 14, 1, 0, 5 ) );
       rightPanel = new JPanel();
-      rightPanel.setLayout( new GridLayout( 9, 1, 0, 5 ) );
+      rightPanel.setLayout(new GridLayout(14, 1, 0, 5));
       
       createRow( FIRST_NAME );
       createRow( LAST_NAME );
       createRow( ADDRESS1 );
-      createRow( ADDRESS2 );
+   //   createRow( ADDRESS2 );
       createRow( CITY );
       createRow( STATE );
       createRow( ZIPCODE );
+      createRow(ALTADDR1);
+      createRow(ALTCITY);
+      createRow(ALTSTATE);
+      createRow(ALTZIPCODE);
+      createRow(HOMEPHONE);
       createRow( PHONE );
+      createRow(ALTPHONE);
       createRow( EMAIL );
-      
+      createRow( ALTEMAIL );
+
       Container container = getContentPane();
       container.add( leftPanel, BorderLayout.WEST );
       container.add( rightPanel, BorderLayout.CENTER );
@@ -73,7 +90,7 @@ public class AddressBookEntryFrame extends JInternalFrame {
       setField( FIRST_NAME, person.getFirstName() );
       setField( LAST_NAME, person.getLastName() );
       setField( ADDRESS1, person.getAddress1() );
-      setField( ADDRESS2, person.getAddress2() );
+    //  setField( ADDRESS2, person.getAddress2() );
       setField( CITY, person.getCity() );
       setField( STATE, person.getState() );
       setField( ZIPCODE, person.getZipcode() );
@@ -88,7 +105,7 @@ public class AddressBookEntryFrame extends JInternalFrame {
       person.setFirstName( getField( FIRST_NAME ) );
       person.setLastName( getField( LAST_NAME ) );
       person.setAddress1( getField( ADDRESS1 ) );
-      person.setAddress2( getField( ADDRESS2 ) );
+      //person.setAddress2( getField( ADDRESS2 ) );
       person.setCity( getField( CITY ) );
       person.setState( getField( STATE ) );
       person.setZipcode( getField( ZIPCODE ) );
