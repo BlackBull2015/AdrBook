@@ -12,10 +12,13 @@
       <column name="addressID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="personID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="address1" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
-      <column name="address2" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
       <column name="city" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
-      <column name="state" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
-      <column name="zipcode" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="eircode" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="county" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12"/>
+      <column name="altaddress" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="altcity" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="alteircode" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="altcounty" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="addressID"/>
       <foreign-key name="fk_addresses" columns="personID" ref-table="names" ref-schema="" ref-catalog="addressbook" ref-columns="personID" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="fk_addresses" unique="false" columns="personID"/>

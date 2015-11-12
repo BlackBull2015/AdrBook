@@ -45,8 +45,8 @@ public class CloudscapeDataAccess
       // locate person
       sqlFind = connection.prepareStatement(
          "SELECT names.personID, firstName, lastName, " +
-            "addressID, address1, address2, city, state, " +
-            "zipcode, phoneID, phoneNumber, emailID, " +
+            "addressID, address1, city, eircode, " +
+            "county,altaddress, altcity, alteircode, altcounty, phoneID, phoneNumber, emailID, " +
             "emailAddress " +
          "FROM names, addresses, phoneNumbers, emailAddresses " +
          "WHERE lastName = ? AND " +
@@ -72,8 +72,8 @@ public class CloudscapeDataAccess
 
       // insert address in table addresses
       sqlInsertAddress = connection.prepareStatement(
-         "INSERT INTO addresses ( personID, address1, address2, city, state, zipcode ) " +
-         "VALUES ( ? , ? , ? , ? , ? , ? )" );
+         "INSERT INTO addresses ( personID, address1, city, eircode, county,altaddress,altcity,alteircode,altcounty ) " +
+         "VALUES ( ? ,  ? , ? , ? , ? ,? ,? ,? ,? )" );
 
       // insert phone number in table phoneNumbers
       sqlInsertPhone = connection.prepareStatement(
@@ -94,8 +94,8 @@ public class CloudscapeDataAccess
 
       // update address in table addresses
       sqlUpdateAddress = connection.prepareStatement(
-         "UPDATE addresses SET address1 = ?, address2 = ?, " +
-            "city = ?, state = ?, zipcode = ? " +
+         "UPDATE addresses SET address1 = ?,  " +
+            "city = ?, eircode = ?, county = ? " +
          "WHERE addressID = ?" );
 
       // update phone number in table phoneNumbers
@@ -171,21 +171,21 @@ public class CloudscapeDataAccess
             resultSet.getInt( 1 ) );
          
          // set AddressBookEntry properties
-         person.setFirstName( resultSet.getString( 2 ) );
-         person.setLastName( resultSet.getString( 3 ) );
+         person.setFirstName(resultSet.getString(2));
+         person.setLastName(resultSet.getString(3));
 
-         person.setAddressID( resultSet.getInt( 4 ) );
-         person.setAddress1( resultSet.getString( 5 ) );
-         person.setAddress2( resultSet.getString( 6 ) );
-         person.setCity( resultSet.getString( 7 ) );
-         person.setState( resultSet.getString( 8 ) );
-         person.setZipcode( resultSet.getString( 9 ) );
+         person.setAddressID(resultSet.getInt(4));
+         person.setAddress1(resultSet.getString(5));
+       //  person.setAddress2( resultSet.getString( 6 ) );
+         person.setCity( resultSet.getString( 6 ) );
+         person.setEircode(resultSet.getString(7));
+         person.setCounty(resultSet.getString(8));
 
-         person.setPhoneID( resultSet.getInt( 10 ) );
-         person.setPhoneNumber( resultSet.getString( 11 ) );
+         person.setPhoneID( resultSet.getInt( 9 ) );
+         person.setPhoneNumber( resultSet.getString( 10 ) );
 
-         person.setEmailID( resultSet.getInt( 12 ) );
-         person.setEmailAddress( resultSet.getString( 13 ) );
+         person.setEmailID( resultSet.getInt( 11 ) );
+         person.setEmailAddress( resultSet.getString( 12 ) );
  
          // return AddressBookEntry
          return person;
@@ -221,11 +221,11 @@ public class CloudscapeDataAccess
          
          // update addresses table
          sqlUpdateAddress.setString( 1, person.getAddress1() );
-         sqlUpdateAddress.setString( 2, person.getAddress2() );
-         sqlUpdateAddress.setString( 3, person.getCity() );
-         sqlUpdateAddress.setString( 4, person.getState() );
-         sqlUpdateAddress.setString( 5, person.getZipcode() );
-         sqlUpdateAddress.setInt( 6, person.getAddressID() );
+         //sqlUpdateAddress.setString( 2, person.getAddress2() );
+         sqlUpdateAddress.setString( 2, person.getCity() );
+         sqlUpdateAddress.setString( 3, person.getEircode() );
+         sqlUpdateAddress.setString( 4, person.getCounty() );
+         sqlUpdateAddress.setInt( 5, person.getAddressID() );
          result = sqlUpdateAddress.executeUpdate();
          
          // if update fails, rollback and discontinue 
@@ -310,14 +310,24 @@ public class CloudscapeDataAccess
             sqlInsertAddress.setInt( 1, personID );
             sqlInsertAddress.setString(2,
                     person.getAddress1());
-            sqlInsertAddress.setString( 3, 
-               person.getAddress2() );
-            sqlInsertAddress.setString( 4, 
-               person.getCity() );
-            sqlInsertAddress.setString( 5, 
-               person.getState() );
-            sqlInsertAddress.setString( 6, 
-               person.getZipcode() );
+            logger.log(Level.INFO, person.getAddress1());
+            sqlInsertAddress.setString(3,
+                    person.getCity());
+            logger.log(Level.INFO, person.getCity());
+            sqlInsertAddress.setString(4,
+                    person.getEircode());
+            logger.log(Level.INFO, person.getEircode());
+            sqlInsertAddress.setString(5,
+                    person.getCounty());
+            sqlInsertAddress.setString(6,
+                    person.getAltaddress());
+            sqlInsertAddress.setString(7,
+                    person.getAltcity());
+            sqlInsertAddress.setString(8,
+                    person.getAlteircode());
+            sqlInsertAddress.setString(9,
+                    person.getAltcounty());
+            logger.log(Level.INFO, person.getCounty());
             logger.log(Level.INFO, "Data inserted");
             result = sqlInsertAddress.executeUpdate();
             logger.log(Level.INFO, "Updates DATA");

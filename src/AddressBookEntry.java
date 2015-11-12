@@ -5,18 +5,17 @@ public class AddressBookEntry {
    private String firstName = "";
    private String lastName = "";
    private String address1 = "";
-   private String address2 = "";
    private String city = "";
-   private String state = "";
-   private String zipcode = "";
+   private String eircode = "";
+   private String county = "";
    private String phoneNumber = "";
    private String emailAddress = "";
 
 
    private String altaddress = "";
    private String altcity = "";
-   private String altstate = "";
-   private String altzipcode = "";
+   private String alteircode = "";
+   private String altcounty = "";
    private String altamail = "";
    private String homephone = "";
    private String altphone = "";
@@ -72,18 +71,7 @@ public class AddressBookEntry {
    {
       return address1;
    }
-   
-   // set second line of person's address
-   public void setAddress2( String secondLine )
-   {
-      address2 = secondLine;
-   }
-   
-   // get second line of person's address
-   public String getAddress2()
-   {
-      return address2;
-   }
+
    
    // set city in which person lives
    public void setCity( String personCity )
@@ -96,28 +84,7 @@ public class AddressBookEntry {
    {
       return city;
    }
-   
-   // set state in which person lives
-   public void setState( String personState ) { state = personState; }
-   
-   // get state in which person lives
-   public String getState()
-   {
-      return state;
-   }
-   
-   // set person's zip code
-   public void setZipcode( String zip )
-   {
-      zipcode = zip;
-   }
-   
-   // get person's zip code
-   public String getZipcode()
-   {
-      return zipcode;
-   }
-   
+
    // set person's phone number
    public void setPhoneNumber( String number )
    {
@@ -200,20 +167,20 @@ public class AddressBookEntry {
       this.altcity = altcity;
    }
 
-   public String getAltstate() {
-      return altstate;
+   public String getAlteircode() {
+      return alteircode;
    }
 
-   public void setAltstate(String altstate) {
-      this.altstate = altstate;
+   public void setAlteircode(String altstate) {
+      this.alteircode = altstate;
    }
 
-   public String getAltzipcode() {
-      return altzipcode;
+   public String getAltcounty() {
+      return altcounty;
    }
 
-   public void setAltzipcode(String altzipcode) {
-      this.altzipcode = altzipcode;
+   public void setAltcounty(String altzipcode) {
+      this.altcounty = altzipcode;
    }
 
    public String getAltamail() {
@@ -239,6 +206,14 @@ public class AddressBookEntry {
    public void setAltphone(String altphone) {
       this.altphone = altphone;
    }
+
+   public String getCounty() {return county;}
+
+   public void setCounty(String county) {this.county = county;}
+
+   public String getEircode() {return eircode;}
+
+   public void setEircode(String eircode) {this.eircode = eircode;}
 }  // end class AddressBookEntry
 
 
