@@ -93,12 +93,24 @@ public class AddressBookEntryFrame extends JInternalFrame {
       setField( EIRCODE, person.getEircode() );
       setField( COUNTY, person.getCounty() );
       setField( PHONE, person.getPhoneNumber() );
-      setField( EMAIL, person.getEmailAddress() );
+      setField(HOMEPHONE, person.getHomephone());
+      setField(ALTPHONE, person.getAltphone());
 
-      setField( ALTADDR1, person.getEmailAddress() );
-      setField( ALTCITY, person.getEmailAddress() );
-      setField( ALTEIRCODE, person.getEmailAddress() );
-      setField( ALTCOUNTY, person.getEmailAddress() );
+      setField( EMAIL, person.getEmailAddress() );
+      setField( ALTEMAIL, person.getAltamail() );
+
+      setField( ALTADDR1, person.getAltaddress() );
+      setField( ALTCITY, person.getAltcity() );
+      setField( ALTEIRCODE, person.getAlteircode());
+      setField( ALTCOUNTY, person.getAltcounty() );
+
+
+      setField( HOMEPHONE, person.getHomephone());
+      setField( ALTPHONE, person.getAltphone() );
+
+
+
+
 
 
 
@@ -120,11 +132,16 @@ public class AddressBookEntryFrame extends JInternalFrame {
       person.setCounty( getField( COUNTY ) );
       person.setPhoneNumber( getField( PHONE ) );
       person.setEmailAddress( getField( EMAIL ) );
+      person.setAltamail( getField( ALTEMAIL) );
 
       person.setAltaddress( getField( ALTADDR1 ) );
       person.setAltcity( getField( ALTCITY ) );
       person.setAlteircode( getField( ALTEIRCODE ) );
       person.setAltcounty( getField( ALTCOUNTY ) );
+
+      person.setHomephone( getField( HOMEPHONE) );
+      person.setAltphone( getField( ALTPHONE) );
+
 
       return person;
    }
