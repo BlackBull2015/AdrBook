@@ -8,6 +8,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
+import java.util.ArrayList;
 
 // Java extension packages
 import javax.swing.*;
@@ -147,9 +148,24 @@ public class AddressBook extends JFrame {
    // method to launch program execution
    public static void main( String args[] )
    {
-      new AddressBook();
+      try{
+         UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+      }catch(Exception e){
+
    }
-   
+
+      SwingUtilities.invokeLater(new Runnable() {
+         @Override
+         public void run() {
+            new AddressBook();
+         }
+      });
+
+   }
+
+
+
+
    // Private inner class defines action that enables 
    // user to input new entry. User must "Save" entry
    // after inputting data.
@@ -334,31 +350,37 @@ public class AddressBook extends JFrame {
          // if last name was input, search for it; otherwise,
          // do nothing
          if ( lastName != null ) {
-               
+
             // Execute search. If found, AddressBookEntry
             // is returned containing data.
-            AddressBookEntry person = database.findPerson( 
-               lastName );
 
-            if ( person != null ) {
-                  
-               // create window to display AddressBookEntry
-               AddressBookEntryFrame entryFrame =
-                  createAddressBookEntryFrame();
-                 
-               // set AddressBookEntry to display
-               entryFrame.setAddressBookEntry( person );
-                  
-               // display window
-               desktop.add( entryFrame );
-               entryFrame.setVisible( true );
-            }
-            else
-               JOptionPane.showMessageDialog( desktop, 
-                  "Entry with last name \"" + lastName + 
-                  "\" not found in address book" );
-            
-         }  // end "if ( lastName == null )"
+            ArrayList<AddressBookEntry> People = database.findPerson(
+                    lastName);
+
+            int size = People.size();
+
+            for (int i = 0; i < size; i++) {
+               AddressBookEntry  person = People.get(i);
+
+               if (person != null) {
+
+                  // create window to display AddressBookEntry
+                  AddressBookEntryFrame entryFrame =
+                          createAddressBookEntryFrame();
+
+                  // set AddressBookEntry to display
+                  entryFrame.setAddressBookEntry(person);
+
+                  // display window
+                  desktop.add(entryFrame);
+                  entryFrame.setVisible(true);
+               } else
+                  JOptionPane.showMessageDialog(desktop,
+                          "Entry with last name \"" + lastName +
+                                  "\" not found in address book");
+
+            }  // end "if ( lastName == null )"
+         }
          
       }  // end method actionPerformed
       
