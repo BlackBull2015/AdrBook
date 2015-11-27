@@ -11,25 +11,25 @@ import java.awt.*;
 import javax.swing.*;
 
 public class AddressBookEntryFrame extends JInternalFrame {
-   
+
    // HashMap to store JTextField references for quick access
-   private HashMap fields; 
-   
+   private HashMap fields;
+
    // current AddressBookEntry set by AddressBook application
    private AddressBookEntry person;
-   
+
    // panels to organize GUI
    private JPanel leftPanel, rightPanel;
-   
-   // static integers used to determine new window positions  
+
+   // static integers used to determine new window positions
    // for cascading windows
    private static int xOffset = 0, yOffset = 0;
-   
+
    // static Strings that represent name of each text field.
-   // These are placed on JLabels and used as keys in 
+   // These are placed on JLabels and used as keys in
    // HashMap fields.
-   private static final String FIRST_NAME = "First Name", 
-      LAST_NAME = "Last Name", ADDRESS1 = "Address 1", 
+   private static final String FIRST_NAME = "First Name",
+      LAST_NAME = "Last Name", ADDRESS1 = "Address 1",
       CITY = "City", EIRCODE = "Eircode",
       COUNTY = "County", PHONE = "Mobile Phone", EMAIL = "Email",
     ALTADDR1 = "Alt Address"
@@ -42,19 +42,19 @@ public class AddressBookEntryFrame extends JInternalFrame {
    ;
 
 
-  
+
    // construct GUI
    public AddressBookEntryFrame()
    {
       super( "Address Book Entry", true, true );
-      
-      fields = new HashMap();  
+
+      fields = new HashMap();
 
       leftPanel = new JPanel();
       leftPanel.setLayout( new GridLayout( 17, 1, 0, 5 ) );
       rightPanel = new JPanel();
       rightPanel.setLayout(new GridLayout(17, 1, 0, 5));
-      
+
       createRow( FIRST_NAME );
       createRow( LAST_NAME );
       createRow( ADDRESS1 );
@@ -74,18 +74,18 @@ public class AddressBookEntryFrame extends JInternalFrame {
       Container container = getContentPane();
       container.add( leftPanel, BorderLayout.WEST );
       container.add( rightPanel, BorderLayout.CENTER );
-     
+
       setBounds( xOffset, yOffset, 500, 500 );
       xOffset = ( xOffset + 30 ) % 300;
       yOffset = ( yOffset + 30 ) % 300;
    }
 
-   // set AddressBookEntry then use its properties to 
+   // set AddressBookEntry then use its properties to
    // place data in each JTextField
    public void setAddressBookEntry( AddressBookEntry entry )
    {
       person = entry;
-      
+
       setField( FIRST_NAME, person.getFirstName() );
       setField( LAST_NAME, person.getLastName() );
       setField( ADDRESS1, person.getAddress1() );
@@ -118,7 +118,7 @@ public class AddressBookEntryFrame extends JInternalFrame {
 
 
    }
-   
+
    // store AddressBookEntry data from GUI and return 
    // AddressBookEntry
    public AddressBookEntry getAddressBookEntry()
@@ -150,30 +150,30 @@ public class AddressBookEntryFrame extends JInternalFrame {
    // name and value
    private void setField( String fieldName, String value )
    {
-      JTextField field = 
+      JTextField field =
          ( JTextField ) fields.get( fieldName );
-      
+
       field.setText( value );
    }
-   
+
    // get text in JTextField by specifying field's name
    private String getField( String fieldName )
    {
-      JTextField field = 
+      JTextField field =
          ( JTextField ) fields.get( fieldName );
-            
-      return field.getText();  
+
+      return field.getText();
    }
-   
+
    // utility method used by constructor to create one row in
    // GUI containing JLabel and JTextField
    private void createRow( String name )
-   {            
+   {
       JLabel label = new JLabel( name, SwingConstants.RIGHT );
-      label.setBorder( 
+      label.setBorder(
          BorderFactory.createEmptyBorder( 5, 5, 5, 5 ) );
       leftPanel.add( label );
-          
+
       JTextField field = new JTextField( 30 );
       rightPanel.add( field );
 

@@ -186,17 +186,23 @@ public class AddressBook extends JFrame {
       // display window in which user can input entry
       public void actionPerformed( ActionEvent e )
       {
-         // create new internal window
-         AddressBookEntryFrame entryFrame = 
-            createAddressBookEntryFrame();
-         
-         // set new AddressBookEntry in window
-         entryFrame.setAddressBookEntry( 
-            new AddressBookEntry() );
-         
-         // display window
-         desktop.add( entryFrame );
-         entryFrame.setVisible( true );
+         new Thread(new Runnable() {
+            @Override
+            public void run() {
+               // create new internal window
+               AddressBookEntryFrame entryFrame =
+                       createAddressBookEntryFrame();
+
+               // set new AddressBookEntry in window
+               entryFrame.setAddressBookEntry(
+                       new AddressBookEntry() );
+
+               // display window
+               desktop.add( entryFrame );
+               entryFrame.setVisible( true );
+            }
+         }).run();
+
       }
       
    }  // end inner class NewAction
@@ -363,17 +369,22 @@ public class AddressBook extends JFrame {
                AddressBookEntry  person = People.get(i);
 
                if (person != null) {
-
                   // create window to display AddressBookEntry
-                  AddressBookEntryFrame entryFrame =
-                          createAddressBookEntryFrame();
+                  new Thread(new Runnable() {
+                     @Override
+                     public void run() {
+                        AddressBookEntryFrame entryFrame =
+                                createAddressBookEntryFrame();
 
-                  // set AddressBookEntry to display
-                  entryFrame.setAddressBookEntry(person);
+                        // set AddressBookEntry to display
+                        entryFrame.setAddressBookEntry(person);
 
-                  // display window
-                  desktop.add(entryFrame);
-                  entryFrame.setVisible(true);
+                        // display window
+                        desktop.add(entryFrame);
+                        entryFrame.setVisible(true);
+                     }
+                  }).run();
+
                } else
                   JOptionPane.showMessageDialog(desktop,
                           "Entry with last name \"" + lastName +
